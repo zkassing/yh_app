@@ -15,4 +15,8 @@ export default {
     font-size: 12px;
     margin-bottom: 70px;
   }
+  a{
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color:transparent;
+  }
 </style>

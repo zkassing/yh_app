@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import list from '@/components/list/list'
 import type from '@/components/type/index'
 import works from '@/components/works/works'
+import Case from '@/components/case/case'
 Vue.use(Router)
 
 export default new Router({
@@ -18,7 +19,8 @@ export default new Router({
         path:"/works",
         component:works
       },{
-        path:"/case"
+        path:"/case",
+        component:Case
       }]
 
     },{

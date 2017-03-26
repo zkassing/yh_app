@@ -1,6 +1,6 @@
 <template>
-    <ul class="works" v-if="works"> 
-        <v-item v-for="(item,index) in works" :content="item" key="item" :class="changeCol(index,works.length)"></v-item>
+    <ul class="case" v-if="Case"> 
+        <v-item v-for="(item,index) in Case" :content="item" key="item" :class="changeCol(index,Case.length)"></v-item>
     </ul>
 </template>
 <script>
@@ -8,13 +8,12 @@
     export default{
         data(){
             return{
-                works:[],
-                col:1
+                Case:[]
             }
         },
         created(){
-            this.$http.get('/getType',{params:{type:"works"}}).then((response)=>{
-                this.works = response.body.result;
+            this.$http.get('/getType',{params:{type:"case"}}).then((response)=>{
+                this.Case = response.body.result;
             })
         },
         methods:{
@@ -35,7 +34,7 @@
     
 </script>
 <style lang="">
-    .works{
+    .case{
         display: flex;
         flex-wrap: wrap;
         list-style: none;
@@ -44,7 +43,7 @@
         padding: 12px 12px 0;
         justify-content: space-between;
     }
-    .works li{
+    .case li{
         margin-bottom: 8px;
     }
 </style>

@@ -30,6 +30,14 @@
     .col-2{
         flex: 0 0 49%;
     }
+    .col-2 .item-title{
+        max-width: 75px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    } 
+    .col-2 .item-control{
+        width: 60px;
+    }
     li{
         box-sizing: border-box;
         padding: 10px 10px 0;

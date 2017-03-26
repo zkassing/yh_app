@@ -13,7 +13,7 @@ var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
 
 var getSubject = require('../api/getSubject')
-var getWorks = require('../api/getWorks') 
+var getType = require('../api/getType') 
 
 
 // default port where dev server listens for incoming traffic
@@ -27,7 +27,7 @@ var proxyTable = config.dev.proxyTable
 var app = express()
 var compiler = webpack(webpackConfig)
 app.use('/getSubject', getSubject)
-app.use('/getWorks', getWorks)
+app.use('/getType', getType)
 
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {

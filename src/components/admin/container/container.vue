@@ -4,7 +4,7 @@
             <sideBar></sideBar>
         </el-col>
         <el-col :span="18" :offset="1">
-        
+            <router-view></router-view>
         </el-col>
     </el-row>
 </template>

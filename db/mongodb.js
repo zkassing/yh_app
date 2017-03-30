@@ -43,7 +43,7 @@ function query(data,find,callback){
     })
 }
 
-exports.default = {
+module.exports = {
     query:query,
     insert:insert
 };

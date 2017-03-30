@@ -6,7 +6,7 @@ import works from '@/components/client/works/works'
 import Case from '@/components/client/case/case'
 
 import Admin from "@/components/admin/container/container"
-import item from "@/components/admin/content/item"
+import _item from "@/components/admin/content/item"
 import _type from "@/components/admin/content/type"
 import subject from "@/components/admin/content/subject"
 import menu from "@/components/admin/content/menu"
@@ -38,18 +38,19 @@ export default new Router({
     {
       path: "/admin",
       component: Admin,
+      redirect:"/admin/item",
       children:[
         {
-          path:"item",
-          component:item
+          path:"/admin/item",
+          component:_item
         },{
-          path:"type",
+          path:"/admin/type",
           component:_type
         },{
-          path:"subject",
+          path:"/admin/subject",
           component:subject
         },{
-          path:"menu",
+          path:"/admin/menu",
           component:menu
         }
       ]

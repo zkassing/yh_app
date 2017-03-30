@@ -1,5 +1,8 @@
 <template>
     <el-row>
+        <el-col :span="24">
+            
+        </el-col>
         <el-col :span="4">
             <sideBar></sideBar>
         </el-col>

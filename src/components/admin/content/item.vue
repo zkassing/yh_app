@@ -25,17 +25,17 @@
         </el-form-item>
         <el-form-item label="选择栏目">
             <el-select v-model="form.menu.value" placeholder="请选择栏目">
-                <el-option v-for="menu in form.menu.items" :label="menu.label" :value="menu.value" key="menu.id"></el-option>
+                <el-option v-for="menu in form.menu.items" :label="menu.menu" :value="menu.value" key="menu.id"></el-option>
             </el-select>
         </el-form-item>
         <el-form-item label="选择专业">
             <el-select v-model="form.subject.value" placeholder="请选择专业">
-                <el-option v-for="subject in form.subject.items" :label="subject.label" :value="subject.value" key="subject"></el-option>
+                <el-option v-for="subject in form.subject.items" :label="subject.subject" :value="subject.value" key="subject"></el-option>
             </el-select>
         </el-form-item>
         <el-form-item label="选择类别">
             <el-select v-model="form.type.value" placeholder="请选择类别">
-                <el-option v-for="type in form.type.items" :label="type.label" :value="type.value" key="type"></el-option>
+                <el-option v-for="type in form.type.items" :label="type.type" :value="type.value" key="type"></el-option>
             </el-select>
         </el-form-item>
         <el-form-item>
@@ -52,7 +52,6 @@
             title:"",
             content:"",
             menu:{
-                id:"",
                 value:"",
                 items:[]
             },
@@ -70,7 +69,11 @@
       }
     },
     created(){
-        this.$http.post('/getMenu')
+        this.$http.post('/menu',{type:"query"}).then((response)=>{
+            this.form.menu.items = response.body
+            console.log(this.form.menu)
+
+        })
     },
     methods:{
         submit(){

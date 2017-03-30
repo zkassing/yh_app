@@ -1,5 +1,5 @@
 var MongoClient = require('mongodb').MongoClient;
-var DB_CONN_STR = 'mongodb://13.124.53.124:27017/yh_app';    
+var DB_CONN_STR = 'mongodb://127.0.0.1:27017/yh_app';    
 
 // var insertData = function(db, callback) {  
 //     //连接到表  
@@ -23,19 +23,18 @@ var DB_CONN_STR = 'mongodb://13.124.53.124:27017/yh_app';
 //         db.close();
 //     });
 // });
-function insert(data,collection,callback){
+function insert(data,col,callback){
     MongoClient.connect(DB_CONN_STR,function(err,db){
-        console.log("链接成功");
-        var collection = db.collection(collection);
+        var collection = db.collection(col);
         collection.insert(data,function(err,result){
             callback(err,result);
             db.close();
         })
     })
 }
-function query(data,find,collection,callback){
+function query(data,find,col,callback){
     MongoClient.connect(DB_CONN_STR,function(err,db){
-        var collection = db.collection(collection)
+        var collection = db.collection(col)
         collection.find(data,find).toArray(function(err,result){
             callback(err,result)
             db.close()

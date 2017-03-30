@@ -13,13 +13,11 @@ var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
 var bodyParser = require('body-parser')
 
-
-
-
 var getSubject = require('../api/getSubject')
 var getType = require('../api/getType') 
 var insertItem = require('../api/admin/insertItem')
 var upload = require('../api/upload')
+var menu = require('../api/admin/menu')
 
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
@@ -37,6 +35,7 @@ app.use('/getSubject', getSubject)
 app.use('/getType', getType)
 app.use('/insertItem', insertItem)
 app.use('/upload', upload)
+app.use('/menu',menu)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,

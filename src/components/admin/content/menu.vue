@@ -1,4 +1,6 @@
 <template>
+<el-col :span="18"
+            :offset="1">
     <el-form ref="form" :model="form" label-width="80px">
         <el-form-item label="填写栏目">
             <el-input v-model="form.name"></el-input>
@@ -9,6 +11,7 @@
             <el-button>取消</el-button>
         </el-form-item>
     </el-form>
+</el-col>
 </template>
 <script>
     export default{
@@ -21,7 +24,7 @@
         },
         methods:{
             submit(){
-                this.$http.post('/menu',{type:'add',result:{"menu":this.form.name}}).then((response)=>{
+                this.$http.post('/post',{type:'add',col:"menu",result:{"menu":this.form.name}}).then((response)=>{
                     if(response.body.status=="success"){
                         this.$message({
                             message: '添加成功',

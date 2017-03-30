@@ -17,7 +17,7 @@ var getSubject = require('../api/getSubject')
 var getType = require('../api/getType') 
 var insertItem = require('../api/admin/insertItem')
 var upload = require('../api/upload')
-var menu = require('../api/admin/menu')
+var post = require('../api/admin/post')
 
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
@@ -35,7 +35,7 @@ app.use('/getSubject', getSubject)
 app.use('/getType', getType)
 app.use('/insertItem', insertItem)
 app.use('/upload', upload)
-app.use('/menu',menu)
+app.use('/post',post)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,

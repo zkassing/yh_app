@@ -6,9 +6,8 @@
         <el-col :span="4">
             <sideBar></sideBar>
         </el-col>
-        <el-col :span="18" :offset="1">
-            <router-view></router-view>
-        </el-col>
+       
+        <router-view></router-view>
     </el-row>
 </template>
 <script>
@@ -19,6 +18,8 @@
         }
     }
 </script>
-<style lang="">
-    
+<style lang="" scoped>
+    .el-row{
+        margin: 100px;
+    }
 </style>

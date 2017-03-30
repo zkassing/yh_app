@@ -41,7 +41,27 @@ function query(data,find,col,callback){
         })
     })
 }
+function del(data,col,callback){
+    MongoClient.connect(DB_CONN_STR,function(err,db){
+        var collection = db.collection(col)
+        collection.remove(data, function(err,result){
+            callback(err,result)
+            db.close()
+        })
+    })
+}
+function update(data,col,callback){
+    MongoClient.connect(DB_CONN_STR,function(err,db){
+        var collection = db.collection(col)
+        collection.save(data, function(err,result){
+            callback(err,result)
+            db.close()
+        })
+    })
+}
 module.exports = {
     query:query,
-    insert:insert
+    insert:insert,
+    del:del,
+    save:update
 };

@@ -1,4 +1,4 @@
-//db.js
+  //db.js
 var mysql = require('mysql')
 var pool = mysql.createPool({//创建连接池
   host:"localhost",

@@ -11,10 +11,14 @@ var express = require('express')
 var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
+var bodyParser = require('body-parser');
+
+
+
 
 var getSubject = require('../api/getSubject')
 var getType = require('../api/getType') 
-
+var insertItem = require('../api/insertItem')
 
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
@@ -26,9 +30,11 @@ var proxyTable = config.dev.proxyTable
 
 var app = express()
 var compiler = webpack(webpackConfig)
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 app.use('/getSubject', getSubject)
 app.use('/getType', getType)
-
+app.use('/insertItem', insertItem)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,

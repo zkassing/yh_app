@@ -23,26 +23,25 @@ var DB_CONN_STR = 'mongodb://13.124.53.124:27017/yh_app';
 //         db.close();
 //     });
 // });
-function insert(data,callback){
+function insert(data,collection,callback){
     MongoClient.connect(DB_CONN_STR,function(err,db){
         console.log("链接成功");
-        var collection = db.collection('content');
+        var collection = db.collection(collection);
         collection.insert(data,function(err,result){
             callback(err,result);
             db.close();
         })
     })
 }
-function query(data,find,callback){
+function query(data,find,collection,callback){
     MongoClient.connect(DB_CONN_STR,function(err,db){
-        var collection = db.collection('content')
+        var collection = db.collection(collection)
         collection.find(data,find).toArray(function(err,result){
             callback(err,result)
             db.close()
         })
     })
 }
-
 module.exports = {
     query:query,
     insert:insert

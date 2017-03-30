@@ -5,7 +5,7 @@
         </el-form-item>
         
         <el-form-item>
-            <el-button type="primary">立即创建</el-button>
+            <el-button type="primary" @click="submit">立即创建</el-button>
             <el-button>取消</el-button>
         </el-form-item>
     </el-form>
@@ -17,6 +17,20 @@
                 form:{
                     name:""
                 }
+            }
+        },
+        methods:{
+            submit(){
+                this.$http.post('/menu',{type:'add',result:{"menu":this.form.name}}).then((response)=>{
+                    if(response.body.status=="success"){
+                        this.$message({
+                            message: '添加成功',
+                            type: 'success'
+                        });
+                    }else{
+                        this.$message.error('添加失败');
+                    }
+                })
             }
         }
     }

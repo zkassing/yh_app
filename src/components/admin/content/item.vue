@@ -6,7 +6,9 @@
         <el-form-item label="图片">
             <el-upload
             drag
-            action="https://jsonplaceholder.typicode.com/posts/"
+            action="/upload"
+            :file-list="form.fileList"
+            :on-success="upload"
             multiple>
                 <i class="el-icon-upload"></i>
                 <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
@@ -37,7 +39,7 @@
             </el-select>
         </el-form-item>
         <el-form-item>
-            <el-button type="primary">立即创建</el-button>
+            <el-button type="primary" @click="submit">立即创建</el-button>
             <el-button>取消</el-button>
         </el-form-item>
     </el-form>
@@ -61,10 +63,34 @@
             type:{
                 value:"",
                 items:[]
-            }
-        },
+            },
+            fileList: []
+        }
         
       }
+    },
+    created(){
+        this.$http.post('/getMenu')
+    },
+    methods:{
+        submit(){
+            this.$http.post('/insertItem',{params:this.form}).then((response)=>{
+                if(response.body.status=="success"){
+                    this.$message({
+                        message: '添加成功',
+                        type: 'success'
+                    });
+                }else{
+                    this.$message.error('添加失败');
+                }
+                
+            },(response) => {
+                this.$message.error('添加失败');
+            });
+        },
+        upload(response, file, fileList){
+            this.form.fileList = fileList;
+        }
     }
   }
 </script>

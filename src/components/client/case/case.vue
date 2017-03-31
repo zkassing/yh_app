@@ -1,5 +1,5 @@
 <template>
-    <ul class="case" v-if="Case"> 
+    <ul class="case"> 
         <v-item v-for="(item,index) in Case" :content="item" key="item" :class="changeCol(index,Case.length)"></v-item>
     </ul>
 </template>
@@ -12,8 +12,8 @@
             }
         },
         created(){
-            this.$http.get('/getType',{params:{type:"case"}}).then((response)=>{
-                this.Case = response.body.result;
+            this.$http.post('/post',{type:"query",col:"content",t:{type:"案例"}}).then((response)=>{
+                this.Case = response.body;
             })
         },
         methods:{

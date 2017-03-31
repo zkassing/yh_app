@@ -11,6 +11,24 @@
             <el-button>取消</el-button>
         </el-form-item>
     </el-form>
+    <el-table :data="tableData"
+                  style="width: 100%">
+            <el-table-column prop="name"
+                             label="栏目名称">
+            </el-table-column>
+            <el-table-column label="操作"
+                             width="100"
+                             fixed="right">
+                <template scope="scope">
+                    <el-button type="text"
+                               size="small"
+                               @click="edit(scope.$index)">编辑</el-button>
+                    <el-button type="text"
+                               size="small"
+                               @click="del(scope.$index)">删除</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
 </el-col>
 </template>
 <script>
@@ -19,21 +37,40 @@
             return{
                 form:{
                     name:""
-                }
+                },
+                tableData:[]
             }
+        },
+        created(){
+            this.$http.post('/post',{type:"query",col:"menu"}).then((response)=>{
+                this.tableData = response.body
+            })
         },
         methods:{
             submit(){
-                this.$http.post('/post',{type:'add',col:"menu",result:{"menu":this.form.name}}).then((response)=>{
+                this.$http.post('/post',{type:'add',col:"menu",result:{"name":this.form.name}}).then((response)=>{
                     if(response.body.status=="success"){
                         this.$message({
                             message: '添加成功',
                             type: 'success'
                         });
+                        this.form._id = response.body.id
+                        this.tableData.push(this.form)
                     }else{
                         this.$message.error('添加失败');
                     }
                 })
+            },
+            edit(index){
+
+            },
+            del(index){
+                this.$http.post("/post", { type: 'del', col: 'menu', id: this.tableData[index]._id }).then((response) => {
+                    if (response.body.status == "success") {
+                        this.$message.success("删除成功")
+                    }
+                })
+                this.tableData.splice(index, 1)
             }
         }
     }

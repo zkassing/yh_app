@@ -31,8 +31,8 @@
                 <el-select v-model="form.menu"
                            placeholder="请选择栏目">
                     <el-option v-for="menu in menu"
-                               :label="menu.menu"
-                               :value="menu.menu"
+                               :label="menu.name"
+                               :value="menu.name"
                                key="menu.id"></el-option>
                 </el-select>
             </el-form-item>
@@ -40,8 +40,8 @@
                 <el-select v-model="form.subject"
                            placeholder="请选择专业">
                     <el-option v-for="subject in subject"
-                               :label="subject.subject"
-                               :value="subject.subject"
+                               :label="subject.name"
+                               :value="subject.name"
                                key="subject"></el-option>
                 </el-select>
             </el-form-item>
@@ -49,8 +49,8 @@
                 <el-select v-model="form.type"
                            placeholder="请选择类别">
                     <el-option v-for="type in type"
-                               :label="type.type"
-                               :value="type.type"
+                               :label="type.name"
+                               :value="type.name"
                                key="type"></el-option>
                 </el-select>
             </el-form-item>
@@ -79,8 +79,9 @@
                              label="栏目"
                              width="180">
             </el-table-column>
-            <el-table-column prop="type"
-                             label="操作">
+            <el-table-column label="操作"
+                             width="100"
+                             fixed="right">
                 <template scope="scope">
                     <el-button type="text"
                                size="small"

@@ -17,7 +17,7 @@ router.post('/', function(req, res, next) {
             })
             break
         case "query":
-            db.query({},{},req.body.col,function(err,rows){
+            db.query(req.body.t||{},req.body.d||{},req.body.col,function(err,rows){
                 if(err){
                     res.send({"status":"error"})
                 }else{

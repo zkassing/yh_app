@@ -13,7 +13,7 @@
             }
         },
         created(){
-            this.$http.get('/getType',{params:{type:"works"}}).then((response)=>{
+            this.$http.get('/getType',{params:{type:"技巧"}}).then((response)=>{
                 this.works = response.body.result;
             })
         },

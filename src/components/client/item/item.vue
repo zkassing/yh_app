@@ -2,7 +2,7 @@
     <li>
         <div class="item-heading">
             <i class="menu">{{content.menu}}</i>
-            <img :src="content.fileList[0].url" alt="">
+            <img :src="content.fileList.url" alt="">
         </div>
         <div class="item-body">
             <h4 class="item-title">{{content.title}}</h4>

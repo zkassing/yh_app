@@ -16,7 +16,7 @@ var upload = multer({ storage: storage })
 
 /* GET home page. */
 router.post('/', upload.single("file"), function(req, res, next) {
-    // console.log(req.file);
+    console.log(req.file);
     res.send({name:req.file.filename,url:req.file.path})
     // let type = req.query.type
     // db.insert({type:type},function(err,rows){

@@ -11,7 +11,7 @@
             <el-form-item label="图片">
                 <el-upload drag
                            action="/upload"
-                           :file-list="form.fileList"
+                           :file-list="fileList"
                            :on-success="upload"
                            multiple>
                     <i class="el-icon-upload"></i>
@@ -107,6 +107,7 @@ export default {
                 type: "",
                 fileList: []
             },
+            fileList: [],
             loading:false,
             menu: [],
             subject: [],
@@ -178,7 +179,10 @@ export default {
             this.form = {}
         },
         upload(response, file, fileList) {
-            this.form.fileList = fileList
+            this.fileList = fileList
+            this.form.fileList = fileList[0].response
+            console.log(fileList[0].response)
+
         },
         edit(index) {
             this.form = this.tableData[index]
